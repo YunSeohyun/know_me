@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'Know Me',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        fontFamily: 'Pretendard',    // Pretendard 폰트 패밀리 적용
+        fontFamily: 'Pretendard', // Pretendard 폰트 패밀리 적용
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
         useMaterial3: true,
       ),
@@ -147,7 +147,8 @@ class ProfileScreen extends StatelessWidget {
                 backgroundColor: Colors.white,
                 elevation: 4,
                 shape: const StadiumBorder(),
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                 side: BorderSide(color: Colors.grey[300]!),
               ),
               child: const Text(
@@ -163,16 +164,17 @@ class ProfileScreen extends StatelessWidget {
           // 메뉴 리스트
           ...List.generate(
             menuItems.length * 2 - 1,
-                (i) => i.isEven
+            (i) => i.isEven
                 ? ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(
-                menuItems[i ~/ 2],
-                style: const TextStyle(fontSize: 16),
-              ),
-              trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-              onTap: () {},
-            )
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(
+                      menuItems[i ~/ 2],
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    trailing:
+                        const Icon(Icons.chevron_right, color: Colors.grey),
+                    onTap: () {},
+                  )
                 : const Divider(height: 1),
           ),
 
@@ -196,7 +198,9 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
-                Text('고객지원', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                Text('고객지원',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
                 SizedBox(height: 4),
                 Text('tel: 02-000-0000', style: TextStyle(fontSize: 12)),
                 Text('email : help@knowme.com', style: TextStyle(fontSize: 12)),
@@ -207,7 +211,8 @@ class ProfileScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 12),
                 ),
                 SizedBox(height: 8),
-                Text('©KnowMe. All rights reserved.', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                Text('©KnowMe. All rights reserved.',
+                    style: TextStyle(fontSize: 12, color: Colors.grey)),
                 SizedBox(height: 20),
               ],
             ),

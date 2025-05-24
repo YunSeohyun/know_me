@@ -13,11 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Know Me',                            // 앱 이름
+      title: 'Know Me', // 앱 이름
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,            // 테마 색상
+          seedColor: Colors.deepPurple, // 테마 색상
         ),
       ),
 
@@ -27,4 +27,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

@@ -26,13 +26,13 @@ class KnowMeApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: gray50,
         colorScheme:
-        ColorScheme.fromSeed(seedColor: primaryBlue, primary: primaryBlue),
+            ColorScheme.fromSeed(seedColor: primaryBlue, primary: primaryBlue),
         textTheme: GoogleFonts.notoSansKrTextTheme()
             .apply(bodyColor: gray700, displayColor: gray700),
         chipTheme: ChipThemeData(
           labelStyle: GoogleFonts.notoSansKr(fontSize: 13, color: gray500),
           shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
         ),
         appBarTheme: const AppBarTheme(
           elevation: 0,
@@ -50,25 +50,25 @@ class KnowMeApp extends StatelessWidget {
  |                      COMMON APP BAR WIDGET                   |
  *───────────────────────────────────────────────────────────────*/
 PreferredSizeWidget buildMainAppBar() => AppBar(
-  titleSpacing: 16,
-  leading: const SizedBox(), // 좌측 여백
-  title: Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Image.asset('assets/logo.png', height: 24),
-      const SizedBox(width: 6),
-      Image.asset('assets/knowme_text.png', height: 22),
-    ],
-  ),
-  actions: const [
-    Icon(Icons.search),
-    SizedBox(width: 12),
-    Icon(Icons.notifications_none),
-    SizedBox(width: 12),
-    Icon(Icons.person_outline),
-    SizedBox(width: 8),
-  ],
-);
+      titleSpacing: 16,
+      leading: const SizedBox(), // 좌측 여백
+      title: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset('assets/logo.png', height: 24),
+          const SizedBox(width: 6),
+          Image.asset('assets/knowme_text.png', height: 22),
+        ],
+      ),
+      actions: const [
+        Icon(Icons.search),
+        SizedBox(width: 12),
+        Icon(Icons.notifications_none),
+        SizedBox(width: 12),
+        Icon(Icons.person_outline),
+        SizedBox(width: 8),
+      ],
+    );
 
 /*───────────────────────────────────────────────────────────────*
  |                           HOME PAGE                          |
@@ -125,8 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
   ];
 
-  List<Project> get _visibleProjects =>
-      _selectedTag == null ? _projects : _projects.where((p) => p.tags.contains(_selectedTag)).toList();
+  List<Project> get _visibleProjects => _selectedTag == null
+      ? _projects
+      : _projects.where((p) => p.tags.contains(_selectedTag)).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -156,9 +157,12 @@ class _HomeScreenState extends State<HomeScreen> {
         onDestinationSelected: (i) => setState(() => _navIndex = i),
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home_outlined), label: '공고'),
-          NavigationDestination(icon: Icon(Icons.list_alt_outlined), label: '내 활동'),
-          NavigationDestination(icon: Icon(Icons.lightbulb_outline), label: '활동 추천'),
-          NavigationDestination(icon: Icon(Icons.analytics_outlined), label: 'AI 분석'),
+          NavigationDestination(
+              icon: Icon(Icons.list_alt_outlined), label: '내 활동'),
+          NavigationDestination(
+              icon: Icon(Icons.lightbulb_outline), label: '활동 추천'),
+          NavigationDestination(
+              icon: Icon(Icons.analytics_outlined), label: 'AI 분석'),
         ],
       ),
     );
@@ -166,106 +170,104 @@ class _HomeScreenState extends State<HomeScreen> {
 
   /*──── Tag Filter Row ────*/
   Widget _buildTagFilter() => SizedBox(
-    height: 42,
-    child: ListView.separated(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      scrollDirection: Axis.horizontal,
-      separatorBuilder: (_, __) => const SizedBox(width: 8),
-      itemCount: filterTags.length + 1,
-      itemBuilder: (context, idx) {
-        if (idx == 0) {
-          return IconButton(
-            splashRadius: 20,
-            icon: Icon(Icons.refresh,
-                color: _selectedTag == null ? gray500 : primaryBlue),
-            onPressed: () => setState(() => _selectedTag = null),
-          );
-        }
-        final tag = filterTags[idx - 1];
-        final selected = tag == _selectedTag;
-        return GestureDetector(
-          onTap: () =>
-              setState(() => _selectedTag = selected ? null : tag),
-          child: Container(
-            padding:
-            const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-            decoration: BoxDecoration(
-              color: selected ? primaryBlue : gray100,
-              borderRadius: BorderRadius.circular(18),
-              border:
-              Border.all(color: selected ? primaryBlue : gray200),
-            ),
-            child: Text(
-              tag,
-              style: GoogleFonts.notoSansKr(
-                fontSize: 13,
-                color: selected ? Colors.white : gray700,
-                fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
+        height: 42,
+        child: ListView.separated(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          scrollDirection: Axis.horizontal,
+          separatorBuilder: (_, __) => const SizedBox(width: 8),
+          itemCount: filterTags.length + 1,
+          itemBuilder: (context, idx) {
+            if (idx == 0) {
+              return IconButton(
+                splashRadius: 20,
+                icon: Icon(Icons.refresh,
+                    color: _selectedTag == null ? gray500 : primaryBlue),
+                onPressed: () => setState(() => _selectedTag = null),
+              );
+            }
+            final tag = filterTags[idx - 1];
+            final selected = tag == _selectedTag;
+            return GestureDetector(
+              onTap: () => setState(() => _selectedTag = selected ? null : tag),
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                decoration: BoxDecoration(
+                  color: selected ? primaryBlue : gray100,
+                  borderRadius: BorderRadius.circular(18),
+                  border: Border.all(color: selected ? primaryBlue : gray200),
+                ),
+                child: Text(
+                  tag,
+                  style: GoogleFonts.notoSansKr(
+                    fontSize: 13,
+                    color: selected ? Colors.white : gray700,
+                    fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
+                  ),
+                ),
               ),
-            ),
-          ),
-        );
-      },
-    ),
-  );
+            );
+          },
+        ),
+      );
 
   /*──── Project List ────*/
   Widget _buildProjectList() => Expanded(
-    child: ListView.separated(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      itemCount: _visibleProjects.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 12),
-      itemBuilder: (context, i) {
-        final p = _visibleProjects[i];
-        return Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: gray200),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(p.title,
-                    style: GoogleFonts.notoSansKr(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: gray700)),
-                const SizedBox(height: 4),
-                Text(p.description,
-                    style: GoogleFonts.notoSansKr(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                        color: gray500)),
-                const SizedBox(height: 8),
-                Wrap(
-                  spacing: 6,
-                  runSpacing: 4,
-                  children: p.tags
-                      .map(
-                        (tag) => Chip(
-                      label: Text(tag,
-                          style: GoogleFonts.notoSansKr(fontSize: 12)),
-                      backgroundColor: gray100,
-                      side: BorderSide.none,
-                      visualDensity: VisualDensity.compact,
+        child: ListView.separated(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          itemCount: _visibleProjects.length,
+          separatorBuilder: (_, __) => const SizedBox(height: 12),
+          itemBuilder: (context, i) {
+            final p = _visibleProjects[i];
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: gray200),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(p.title,
+                        style: GoogleFonts.notoSansKr(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: gray700)),
+                    const SizedBox(height: 4),
+                    Text(p.description,
+                        style: GoogleFonts.notoSansKr(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                            color: gray500)),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 6,
+                      runSpacing: 4,
+                      children: p.tags
+                          .map(
+                            (tag) => Chip(
+                              label: Text(tag,
+                                  style: GoogleFonts.notoSansKr(fontSize: 12)),
+                              backgroundColor: gray100,
+                              side: BorderSide.none,
+                              visualDensity: VisualDensity.compact,
+                            ),
+                          )
+                          .toList(),
                     ),
-                  )
-                      .toList(),
+                    const SizedBox(height: 10),
+                    Text(p.date,
+                        style: GoogleFonts.notoSansKr(
+                            fontSize: 12, color: gray400)),
+                  ],
                 ),
-                const SizedBox(height: 10),
-                Text(p.date,
-                    style: GoogleFonts.notoSansKr(
-                        fontSize: 12, color: gray400)),
-              ],
-            ),
-          ),
-        );
-      },
-    ),
-  );
+              ),
+            );
+          },
+        ),
+      );
 }
 
 /*───────────────────────────────────────────────────────────────*
@@ -309,11 +311,9 @@ class _AddProjectPageState extends State<AddProjectPage> {
             _outlinedText(_descCtl, '설명', maxLines: 2),
             const SizedBox(height: 8),
             Text(today,
-                style:
-                GoogleFonts.notoSansKr(fontSize: 13, color: gray500)),
+                style: GoogleFonts.notoSansKr(fontSize: 13, color: gray500)),
             const SizedBox(height: 24),
             _divider(),
-
             _sectionHeader('요약'),
             Stack(
               children: [
@@ -329,18 +329,15 @@ class _AddProjectPageState extends State<AddProjectPage> {
             ),
             const SizedBox(height: 24),
             _divider(),
-
             _sectionHeader('태그'),
             Text('추천태그', style: GoogleFonts.notoSansKr(fontSize: 12)),
             const SizedBox(height: 6),
             _outlinedText(_tagCtl, '직접 입력 후 엔터'),
             const SizedBox(height: 24),
             _divider(),
-
             _linkRow('링크'),
             const SizedBox(height: 24),
             _divider(),
-
             _linkRow('파일', icon: Icons.insert_drive_file_outlined),
           ],
         ),
@@ -372,7 +369,8 @@ class _AddProjectPageState extends State<AddProjectPage> {
                 style: FilledButton.styleFrom(backgroundColor: gray200),
                 onPressed: () => Navigator.pop(context),
                 child: const Text('취소',
-                    style: TextStyle(color: gray500, fontWeight: FontWeight.w600)),
+                    style:
+                        TextStyle(color: gray500, fontWeight: FontWeight.w600)),
               ),
             ),
           ],
@@ -387,15 +385,15 @@ class _AddProjectPageState extends State<AddProjectPage> {
           fontSize: 15, fontWeight: FontWeight.w700, color: primaryBlue));
 
   Widget _outlinedText(TextEditingController ctl, String hint,
-      {int maxLines = 1, EdgeInsets? contentPadding}) =>
+          {int maxLines = 1, EdgeInsets? contentPadding}) =>
       TextField(
         controller: ctl,
         maxLines: maxLines,
         decoration: InputDecoration(
           hintText: hint,
           isDense: true,
-          contentPadding:
-          contentPadding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+          contentPadding: contentPadding ??
+              const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(6)),
         ),
       );
@@ -403,15 +401,19 @@ class _AddProjectPageState extends State<AddProjectPage> {
   Widget _divider() => const Divider(height: 1, color: gray200);
 
   Widget _linkRow(String label, {IconData icon = Icons.link_outlined}) => Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Row(children: [Icon(icon, color: primaryBlue), const SizedBox(width: 8), Text(label)]),
-      IconButton(
-        icon: const Icon(Icons.add_circle_outline, color: primaryBlue),
-        onPressed: () {}, // TODO: 추가 로직
-      )
-    ],
-  );
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(children: [
+            Icon(icon, color: primaryBlue),
+            const SizedBox(width: 8),
+            Text(label)
+          ]),
+          IconButton(
+            icon: const Icon(Icons.add_circle_outline, color: primaryBlue),
+            onPressed: () {}, // TODO: 추가 로직
+          )
+        ],
+      );
 }
 
 /*───────────────────────────────────────────────────────────────*
@@ -424,7 +426,7 @@ class Project {
   final String date;
   const Project(
       {required this.title,
-        required this.description,
-        required this.tags,
-        required this.date});
+      required this.description,
+      required this.tags,
+      required this.date});
 }
